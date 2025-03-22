@@ -26,4 +26,5 @@ jobs:
           app_location: "/" 
           api_location: "" 
           output_location: ""
-          environment_name: "preview" 
+          environment_name: "preview"
+          staging_environment: true   
