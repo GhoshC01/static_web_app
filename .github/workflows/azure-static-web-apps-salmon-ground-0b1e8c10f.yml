@@ -3,10 +3,13 @@ name: Azure Static Web Apps CI/CD (Staging)
 on:
   push:
     branches:
-      - staging 
+      - staging  # Deploy when 'staging' branch is pushed
+  pull_request:  # Deploy preview environment on PR creation/updates
+    branches:
+      - main  # Change this if you want PRs to go to another branch
 
 env:
-  CI: false  
+  CI: false
 
 jobs:
   build_and_deploy_job:
@@ -20,7 +23,7 @@ jobs:
           lfs: false
 
       - name: Update Environment Variables
-        run: sh ./update_env.sh dev 
+        run: sh ./update_env.sh dev  # Ensure 'dev' environment is set
 
       - name: Build And Deploy
         id: builddeploy
@@ -29,9 +32,9 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_GROUND_0B1E8C10F }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"  # Path to your HTML & CSS files
-          api_location: ""  # No API, so this remains empty
-          output_location: ""  # No build step, so this remains empty
+          app_location: "/"  # Location of HTML + CSS files
+          api_location: ""  # No backend API
+          output_location: ""  # No build step
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
