@@ -1,4 +1,4 @@
-name: Azure Static Web Apps - Staging
+
 
 on:
   push:
@@ -43,3 +43,4 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_GROUND_0B1E8C10F }}  # Same token for both environments
           action: "close"
+
