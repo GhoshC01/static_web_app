@@ -30,7 +30,7 @@ jobs:
           app_location: "/"           # App source code path
           api_location: ""            # API source code path (optional)
           output_location: ""         # Built app content directory (optional)
-          env: "staging"              # Specify the environment (e.g., staging)
+          env: "preview"              # Specify the environment (e.g., staging)
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
